@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.playwright-mcp
+
+# keep the template, ignore real secrets
+!.env.example
+
+# local tooling
+.claude/
+*.log

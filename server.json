@@ -1,0 +1,16 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.json",
+  "name": "io.github.chloepark85/kr-groundtruth",
+  "description": "Korean fact-verification tools for AI agents: business registration, address normalization, DART corporations, apartment prices, laws. Prepaid credits.",
+  "version": "0.1.0",
+  "websiteUrl": "https://kr-groundtruth-mcp.vercel.app",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://kr-groundtruth-mcp.vercel.app/api/mcp",
+      "headers": [
+        { "name": "Authorization", "description": "Bearer <API key>. Get one: POST https://kr-groundtruth-mcp.vercel.app/v1/accounts {\"email\"}", "isRequired": true, "isSecret": true }
+      ]
+    }
+  ]
+}
