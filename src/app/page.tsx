@@ -20,7 +20,7 @@ claude mcp add --transport http kgt ${base}/api/mcp --header "Authorization: Bea
         ))}
       </ul>
       <p>
-        <a href="/llms.txt">llms.txt</a> · <a href="/openapi.json">openapi.json</a> · <a href="/pricing.json">pricing.json</a> · MCP: <code>{base}/api/mcp</code>
+        <a href="/topup">크레딧 충전</a> · <a href="/llms.txt">llms.txt</a> · <a href="/openapi.json">openapi.json</a> · <a href="/pricing.json">pricing.json</a> · MCP: <code>{base}/api/mcp</code>
       </p>
     </main>
   );

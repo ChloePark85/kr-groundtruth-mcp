@@ -8,7 +8,8 @@ export const getBalance = async (accountId: string) => {
   return {
     balance: data?.balance ?? 0,
     credit_price_krw: config.creditKrw,
-    topup: "POST /v1/topups {credits} → checkout_url (hand it to a human operator to pay)",
+    topup: "POST /v1/topups {credits} → checkout_url (hand it to a human operator to pay), or a human can pay directly at /topup with the API key",
+    topup_url: `${config.publicUrl()}/topup`,
   };
 };
 
@@ -26,7 +27,8 @@ export const debit = async (accountId: string, tool: string, eventId: string, ca
       throw new ApiError(402, "INSUFFICIENT_CREDITS", `Need ${required} credits, balance is ${balance}.`, {
         balance,
         required,
-        topup_url: `${config.publicUrl()}/v1/topups`,
+        topup_url: `${config.publicUrl()}/topup`,
+        topup_api: `POST ${config.publicUrl()}/v1/topups`,
         topup_how: "POST /v1/topups {\"credits\": N} with this API key, then give checkout_url to a human to pay.",
       });
     }
