@@ -1,0 +1,331 @@
+{
+  "company-verification": [
+    {
+      "tool": "verify_business_registration",
+      "args": {
+        "business_numbers": [
+          "124-81-00998"
+        ]
+      },
+      "response": {
+        "ok": true,
+        "data": {
+          "source": "국세청 사업자등록정보 (data.go.kr)",
+          "results": [
+            {
+              "status": "active",
+              "tax_type": "부가가치세 일반과세자",
+              "registered": true,
+              "status_raw": "계속사업자",
+              "closed_date": null,
+              "tax_type_code": "01",
+              "unit_taxpayer": false,
+              "business_number": "1248100998",
+              "e_invoice_apply_date": null,
+              "tax_type_changed_date": null
+            }
+          ]
+        },
+        "meta": {
+          "tool": "verify_business_registration",
+          "cost": 1,
+          "balance_remaining": 127,
+          "cache_hit": true,
+          "source": "국세청 (data.go.kr)",
+          "fetched_at": "2026-08-27T09:00:00.000Z",
+          "usage_event_id": "usg_…"
+        }
+      }
+    },
+    {
+      "tool": "search_corporation",
+      "args": {
+        "name": "삼성전자",
+        "limit": 3
+      },
+      "response": {
+        "ok": true,
+        "data": {
+          "source": "금융감독원 DART (opendart.fss.or.kr) corpCode 목록 (로컬 캐시)",
+          "results": [
+            {
+              "listed": true,
+              "corp_code": "00126380",
+              "corp_name": "삼성전자",
+              "stock_code": "005930",
+              "modified_date": "20251201"
+            },
+            {
+              "listed": false,
+              "corp_code": "01345812",
+              "corp_name": "삼성전자서비스씨에스",
+              "stock_code": null,
+              "modified_date": "20230125"
+            },
+            {
+              "listed": false,
+              "corp_code": "00252074",
+              "corp_name": "삼성전자판매",
+              "stock_code": null,
+              "modified_date": "20240124"
+            }
+          ]
+        },
+        "meta": {
+          "tool": "search_corporation",
+          "cost": 1,
+          "balance_remaining": 126,
+          "cache_hit": true,
+          "source": "DART corpCode",
+          "fetched_at": "2026-08-27T09:00:00.000Z",
+          "usage_event_id": "usg_…"
+        }
+      }
+    },
+    {
+      "tool": "lookup_corporation",
+      "args": {
+        "corp_code": "00126380"
+      },
+      "response": {
+        "ok": true,
+        "data": {
+          "fax": "031-200-7538",
+          "phone": "02-2255-0114",
+          "ir_url": null,
+          "market": "KOSPI",
+          "source": "금융감독원 DART (opendart.fss.or.kr)",
+          "address": "경기도 수원시 영통구  삼성로 129 (매탄동)",
+          "ceo_name": "전영현, 노태문",
+          "homepage": "www.samsung.com/sec",
+          "corp_code": "00126380",
+          "corp_name": "삼성전자(주)",
+          "market_raw": "Y",
+          "stock_code": "005930",
+          "stock_name": "삼성전자",
+          "corp_name_en": "SAMSUNG ELECTRONICS CO,.LTD",
+          "industry_code": "264",
+          "established_date": "19690113",
+          "fiscal_year_end_month": "12",
+          "business_registration_number": "1248100998",
+          "corporate_registration_number": "1301110006246"
+        },
+        "meta": {
+          "tool": "lookup_corporation",
+          "cost": 1,
+          "balance_remaining": 125,
+          "cache_hit": true,
+          "source": "DART (opendart.fss.or.kr)",
+          "fetched_at": "2026-08-27T09:00:00.000Z",
+          "usage_event_id": "usg_…"
+        }
+      }
+    },
+    {
+      "tool": "search_address",
+      "args": {
+        "keyword": "경기도 수원시 영통구 삼성로 129",
+        "per_page": 1
+      },
+      "response": {
+        "ok": true,
+        "data": {
+          "page": 1,
+          "total": 5,
+          "source": "행정안전부 도로명주소 (juso.go.kr)",
+          "results": [
+            {
+              "ri": null,
+              "sido": "경기도",
+              "sigungu": "수원시 영통구",
+              "adm_code": "4111710100",
+              "lawd_code": "41117",
+              "road_name": "삼성로",
+              "lot_sub_no": "0",
+              "lot_main_no": "416",
+              "postal_code": "16677",
+              "eupmyeondong": "매탄동",
+              "road_address": "경기도 수원시 영통구 삼성로 129 (매탄동)",
+              "road_mgmt_no": "411173177009",
+              "building_name": "삼성전자 1공장",
+              "jibun_address": "경기도 수원시 영통구 매탄동 416 삼성전자 1공장",
+              "is_underground": false,
+              "building_sub_no": "0",
+              "english_address": "129 Samsung-ro, Yeongtong-gu, Suwon-si, Gyeonggi-do",
+              "is_mountain_lot": false,
+              "building_main_no": "129",
+              "building_mgmt_no": "4111710100104160000055916",
+              "road_address_main": "경기도 수원시 영통구 삼성로 129",
+              "road_address_detail": " (매탄동)"
+            }
+          ]
+        },
+        "meta": {
+          "tool": "search_address",
+          "cost": 1,
+          "balance_remaining": 124,
+          "cache_hit": true,
+          "source": "행정안전부 (juso.go.kr)",
+          "fetched_at": "2026-08-27T09:00:00.000Z",
+          "usage_event_id": "usg_…"
+        }
+      }
+    }
+  ],
+  "real-estate": [
+    {
+      "tool": "search_address",
+      "args": {
+        "keyword": "래미안 개포 루체하임",
+        "per_page": 1
+      },
+      "response": {
+        "ok": true,
+        "data": {
+          "page": 1,
+          "total": 1,
+          "source": "행정안전부 도로명주소 (juso.go.kr)",
+          "results": [
+            {
+              "ri": null,
+              "sido": "서울특별시",
+              "sigungu": "강남구",
+              "adm_code": "1168011400",
+              "lawd_code": "11680",
+              "road_name": "개포로110길",
+              "lot_sub_no": "0",
+              "lot_main_no": "741",
+              "postal_code": "06344",
+              "eupmyeondong": "일원동",
+              "road_address": "서울특별시 강남구 개포로110길 50 (일원동, 래미안 개포 루체하임)",
+              "road_mgmt_no": "116804166041",
+              "building_name": "래미안 개포 루체하임",
+              "jibun_address": "서울특별시 강남구 일원동 741 래미안 개포 루체하임",
+              "is_underground": false,
+              "building_sub_no": "0",
+              "english_address": "50 Gaepo-ro 110-gil, Gangnam-gu, Seoul",
+              "is_mountain_lot": false,
+              "building_main_no": "50",
+              "building_mgmt_no": "1168011400106890001002803",
+              "road_address_main": "서울특별시 강남구 개포로110길 50",
+              "road_address_detail": " (일원동, 래미안 개포 루체하임)"
+            }
+          ]
+        },
+        "meta": {
+          "tool": "search_address",
+          "cost": 1,
+          "balance_remaining": 123,
+          "cache_hit": true,
+          "source": "행정안전부 (juso.go.kr)",
+          "fetched_at": "2026-08-27T09:00:00.000Z",
+          "usage_event_id": "usg_…"
+        }
+      }
+    },
+    {
+      "tool": "apartment_trade_prices",
+      "args": {
+        "lawd_code": "11680",
+        "deal_month": "202507",
+        "per_page": 100
+      },
+      "response": {
+        "ok": true,
+        "data": {
+          "source": "국토교통부 아파트 매매 실거래가 (data.go.kr)",
+          "lawd_code": "11680",
+          "deal_month": "202507",
+          "total": 376,
+          "page": 1,
+          "results": [
+            {
+              "apartment_name": "래미안 개포 루체하임",
+              "deal_amount_krw": 3300000000,
+              "deal_amount_raw": "330,000",
+              "deal_date": "2025-07-11",
+              "exclusive_area_m2": 84.97,
+              "floor": 12,
+              "build_year": 2018,
+              "dong": "일원동",
+              "jibun": "741",
+              "road_name": null,
+              "sigungu_code": "11680",
+              "deal_type": "중개거래",
+              "canceled": false,
+              "canceled_date": null,
+              "seller_type": "개인",
+              "buyer_type": "개인"
+            }
+          ],
+          "note": "376건 중 '래미안 개포 루체하임' 3건만 표시"
+        },
+        "meta": {
+          "tool": "apartment_trade_prices",
+          "cost": 3,
+          "balance_remaining": 120,
+          "cache_hit": false,
+          "source": "국토교통부 (data.go.kr)",
+          "fetched_at": "2026-08-27T09:00:00.000Z",
+          "usage_event_id": "usg_…"
+        }
+      }
+    }
+  ],
+  "legal": [
+    {
+      "tool": "search_law",
+      "args": {
+        "query": "주택임대차보호법",
+        "per_page": 3
+      },
+      "response": {
+        "ok": true,
+        "data": {
+          "source": "법제처 국가법령정보 (law.go.kr)",
+          "total": 2,
+          "page": 1,
+          "results": [
+            {
+              "law_id": "001248",
+              "law_serial_no": "276291",
+              "name": "주택임대차보호법",
+              "short_name": "주택임대차법",
+              "law_type": "법률",
+              "ministry": "국토교통부,법무부",
+              "promulgation_date": "20251001",
+              "promulgation_no": "21065",
+              "enforcement_date": "20260102",
+              "revision_type": "타법개정",
+              "is_current": true,
+              "detail_url": "https://www.law.go.kr/DRF/lawService.do?OC=lawoc&target=law&MST=276291&type=HTML&mobileYn=&efYd=20260102"
+            },
+            {
+              "law_id": "004950",
+              "law_serial_no": "287183",
+              "name": "주택임대차보호법 시행령",
+              "short_name": null,
+              "law_type": "대통령령",
+              "ministry": "국토교통부,법무부",
+              "promulgation_date": "20260623",
+              "promulgation_no": "36423",
+              "enforcement_date": "20260701",
+              "revision_type": "타법개정",
+              "is_current": true,
+              "detail_url": "https://www.law.go.kr/DRF/lawService.do?OC=lawoc&target=law&MST=287183&type=HTML&mobileYn=&efYd=20260701"
+            }
+          ]
+        },
+        "meta": {
+          "tool": "search_law",
+          "cost": 2,
+          "balance_remaining": 118,
+          "cache_hit": false,
+          "source": "법제처 (law.go.kr)",
+          "fetched_at": "2026-08-27T09:00:00.000Z",
+          "usage_event_id": "usg_…"
+        }
+      }
+    }
+  ]
+}
