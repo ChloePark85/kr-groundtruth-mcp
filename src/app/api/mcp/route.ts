@@ -71,7 +71,8 @@ const normalized = async (req: Request) => {
   if (candidate && candidate.startsWith("kgt_")) {
     const headers = new Headers(req.headers);
     headers.set("authorization", `Bearer ${candidate}`);
-    req = new Request(req, { headers });
+    const body = req.method === "GET" || req.method === "HEAD" ? undefined : await req.text();
+    req = new Request(req.url, { method: req.method, headers, body });
   }
   return authed(req);
 };
