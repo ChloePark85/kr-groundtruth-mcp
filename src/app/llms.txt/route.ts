@@ -15,7 +15,7 @@ export const GET = () => {
    claude mcp add --transport http kgt ${base}/api/mcp --header "Authorization: Bearer kgt_live_..."
    or REST: curl -X POST ${base}/v1/tools/search_address -H "Authorization: Bearer kgt_live_..." -H 'content-type: application/json' -d '{"keyword":"세종대로 209"}'
 3. Every response includes meta.cost and meta.balance_remaining. When you get 402 INSUFFICIENT_CREDITS:
-   curl -X POST ${base}/v1/topups -H "Authorization: Bearer kgt_live_..." -d '{"credits":500}'  → checkout_url → give it to a human to pay by card.
+   curl -X POST ${base}/v1/topups -H "Authorization: Bearer kgt_live_..." -d '{"credits":500}'  → checkout_url → give it to a human to pay by card. (Humans can also pay directly at ${base}/topup with the API key.)
 
 ## Tools
 ${TOOLS.map((t) => `- [${t.name}](${base}/tools/${t.name}) — ${costLine(t)} ${t.description}`).join("\n")}

@@ -13,7 +13,7 @@ export default async function PayPage({ params }: { params: Promise<{ orderId: s
     .maybeSingle();
 
   if (!order) return <Shell><h1>주문을 찾을 수 없습니다</h1></Shell>;
-  if (order.status === "confirmed") return <Shell><h1>이미 결제 완료된 주문입니다</h1><p>{order.credits} credits 가 충전되었습니다.</p></Shell>;
+  if (order.status === "confirmed") return <Shell><h1>이미 결제 완료된 주문입니다</h1><p>{order.credits} credits 가 충전되었습니다. <a href="/topup">추가 충전</a></p></Shell>;
 
   const email = (order.accounts as unknown as { email: string } | null)?.email ?? "";
   return (

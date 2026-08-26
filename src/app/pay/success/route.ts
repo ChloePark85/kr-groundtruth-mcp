@@ -17,7 +17,7 @@ export async function GET(req: Request) {
     const r = await confirmTopup(orderId, paymentKey, amount);
     return page(
       r.alreadyConfirmed ? "이미 처리된 결제" : "충전 완료",
-      `${r.credits.toLocaleString()} credits 가 충전되었습니다. 현재 잔액: ${r.balance ?? "-"} credits. 이 창을 닫고 에이전트에게 알려주세요.`,
+      `${r.credits.toLocaleString()} credits 가 충전되었습니다. 현재 잔액: ${r.balance ?? "-"} credits. 이 창을 닫고 에이전트에게 알려주세요. <a href="/topup">추가 충전</a>`,
     );
   } catch (e) {
     const err = toApiError(e);
