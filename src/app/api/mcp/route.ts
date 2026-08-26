@@ -27,7 +27,16 @@ const handler = createMcpHandler(
         async (args: unknown, ctx: { http?: { authInfo?: AuthInfo } }) => {
           const extra = ctx.http?.authInfo?.extra as { accountId?: string; keyId?: string; scopes?: string[] } | undefined;
           if (!extra?.accountId || !extra.keyId) {
-            return { isError: true, content: [{ type: "text" as const, text: JSON.stringify({ ok: false, error: { code: "UNAUTHORIZED" } }) }] };
+            const err = {
+              ok: false,
+              error: {
+                code: "UNAUTHORIZED",
+                message: "This tool needs an API key. Get one free (50 credits) then reconnect with Authorization: Bearer kgt_live_... (or x-api-key).",
+                get_key: `curl -X POST ${config.publicUrl()}/v1/accounts -H 'content-type: application/json' -d '{"email":"you@example.com"}'`,
+                docs: `${config.publicUrl()}/llms.txt`,
+              },
+            };
+            return { isError: true, content: [{ type: "text" as const, text: JSON.stringify(err) }] };
           }
           try {
             const env = await executeTool(t.name, args, { accountId: extra.accountId, keyId: extra.keyId, scopes: extra.scopes ?? [] });
@@ -67,13 +76,19 @@ const unauthorized = (message: string) =>
     { status: 401, headers: { "WWW-Authenticate": 'Bearer realm="kr-groundtruth", error="invalid_token"' } },
   );
 
+/**
+ * Discovery (initialize, tools/list, ping…) is public so registries and agents can
+ * inspect tools before signing up. Only tools/call needs a valid key; a missing key
+ * there returns an isError result explaining how to get one. An invalid key is 401.
+ */
 const gated = async (req: Request) => {
   const key = extractKey(req);
-  if (!key) return unauthorized("Provide your API key as Authorization: Bearer kgt_live_... (or x-api-key header).");
-  const auth = await verifyApiKey(key);
-  if (!auth) return unauthorized("Invalid or revoked API key.");
-  const info: AuthInfo = { token: key, clientId: auth.accountId, scopes: auth.scopes, extra: { accountId: auth.accountId, keyId: auth.keyId, scopes: auth.scopes } };
-  (req as Request & { auth?: AuthInfo }).auth = info; // mcp-handler reads ctx.http.authInfo from req.auth
+  if (key) {
+    const auth = await verifyApiKey(key);
+    if (!auth) return unauthorized("Invalid or revoked API key.");
+    const info: AuthInfo = { token: key, clientId: auth.accountId, scopes: auth.scopes, extra: { accountId: auth.accountId, keyId: auth.keyId, scopes: auth.scopes } };
+    (req as Request & { auth?: AuthInfo }).auth = info; // mcp-handler reads ctx.http.authInfo from req.auth
+  }
   return handler(req);
 };
 
