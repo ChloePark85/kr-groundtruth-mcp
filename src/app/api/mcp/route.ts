@@ -1,4 +1,4 @@
-import { createMcpHandler, withMcpAuth } from "mcp-handler";
+import { createMcpHandler } from "mcp-handler";
 import type { AuthInfo } from "@modelcontextprotocol/server";
 import { config } from "@/lib/config";
 import { verifyApiKey } from "@/lib/auth";
@@ -47,34 +47,34 @@ const handler = createMcpHandler(
   },
 );
 
-const verifyToken = async (_req: Request, bearer?: string): Promise<AuthInfo | undefined> => {
-  const auth = await verifyApiKey(bearer);
-  if (!auth) return undefined;
-  return { token: bearer!, clientId: auth.accountId, scopes: auth.scopes, extra: { accountId: auth.accountId, keyId: auth.keyId, scopes: auth.scopes } };
-};
-
-const authed = withMcpAuth(handler, verifyToken, { required: true, resourceUrl: `${config.publicUrl()}/api/mcp` });
-
 /**
- * Accept the API key as `x-api-key: kgt_live_…`, `Authorization: kgt_live_…` (no Bearer),
- * or `?apiKey=` in addition to `Authorization: Bearer …`, by normalizing to the bearer form.
- * Registries/gateways (e.g. Smithery config → header) don't always add the Bearer prefix.
+ * API-key gate. We deliberately do NOT use withMcpAuth: it advertises an OAuth
+ * protected-resource metadata URL in WWW-Authenticate, which makes registries
+ * (Smithery, Claude connectors) attempt OAuth discovery against a server that
+ * only speaks API keys. Accepts: Authorization: Bearer <key> | Authorization: <key>
+ * | x-api-key: <key> | ?apiKey= / ?api_key=.
  */
-const normalized = async (req: Request) => {
-  const auth = req.headers.get("authorization") ?? "";
+const extractKey = (req: Request) => {
+  const auth = (req.headers.get("authorization") ?? "").trim();
   const url = new URL(req.url);
-  const candidate =
-    (/^Bearer\s+/i.test(auth) ? null : auth.trim()) ||
-    req.headers.get("x-api-key")?.trim() ||
-    url.searchParams.get("apiKey")?.trim() ||
-    url.searchParams.get("api_key")?.trim();
-  if (candidate && candidate.startsWith("kgt_")) {
-    const headers = new Headers(req.headers);
-    headers.set("authorization", `Bearer ${candidate}`);
-    const body = req.method === "GET" || req.method === "HEAD" ? undefined : await req.text();
-    req = new Request(req.url, { method: req.method, headers, body });
-  }
-  return authed(req);
+  const bearer = /^Bearer\s+(.+)$/i.exec(auth)?.[1]?.trim();
+  return bearer || auth || req.headers.get("x-api-key")?.trim() || url.searchParams.get("apiKey")?.trim() || url.searchParams.get("api_key")?.trim() || undefined;
 };
 
-export { normalized as GET, normalized as POST, normalized as DELETE };
+const unauthorized = (message: string) =>
+  Response.json(
+    { error: "unauthorized", error_description: message, how_to_get_a_key: `POST ${config.publicUrl()}/v1/accounts {"email"} → api_key (50 free credits)`, docs: `${config.publicUrl()}/llms.txt` },
+    { status: 401, headers: { "WWW-Authenticate": 'Bearer realm="kr-groundtruth", error="invalid_token"' } },
+  );
+
+const gated = async (req: Request) => {
+  const key = extractKey(req);
+  if (!key) return unauthorized("Provide your API key as Authorization: Bearer kgt_live_... (or x-api-key header).");
+  const auth = await verifyApiKey(key);
+  if (!auth) return unauthorized("Invalid or revoked API key.");
+  const info: AuthInfo = { token: key, clientId: auth.accountId, scopes: auth.scopes, extra: { accountId: auth.accountId, keyId: auth.keyId, scopes: auth.scopes } };
+  (req as Request & { auth?: AuthInfo }).auth = info; // mcp-handler reads ctx.http.authInfo from req.auth
+  return handler(req);
+};
+
+export { gated as GET, gated as POST, gated as DELETE };
