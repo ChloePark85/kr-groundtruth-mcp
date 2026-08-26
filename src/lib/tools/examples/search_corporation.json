@@ -1,0 +1,31 @@
+{
+  "ok": true,
+  "data": {
+    "source": "금융감독원 DART (opendart.fss.or.kr) corpCode 목록 (로컬 캐시)",
+    "results": [
+      {
+        "corp_code": "00258801",
+        "corp_name": "카카오",
+        "stock_code": "035720",
+        "listed": true,
+        "modified_date": "20240329"
+      },
+      {
+        "corp_code": "00918444",
+        "corp_name": "카카오",
+        "stock_code": null,
+        "listed": false,
+        "modified_date": "20170630"
+      }
+    ]
+  },
+  "meta": {
+    "tool": "search_corporation",
+    "cost": 1,
+    "balance_remaining": 48,
+    "cache_hit": false,
+    "source": "DART corpCode",
+    "fetched_at": "2026-08-26T14:00:00.000Z",
+    "usage_event_id": "usg_…"
+  }
+}

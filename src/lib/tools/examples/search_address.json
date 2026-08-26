@@ -1,0 +1,43 @@
+{
+  "ok": true,
+  "data": {
+    "source": "행정안전부 도로명주소 (juso.go.kr)",
+    "total": 1,
+    "page": 1,
+    "results": [
+      {
+        "road_address": "서울특별시 강남구 테헤란로 152 (역삼동)",
+        "road_address_main": "서울특별시 강남구 테헤란로 152",
+        "road_address_detail": " (역삼동)",
+        "jibun_address": "서울특별시 강남구 역삼동 737 강남파이낸스센터",
+        "english_address": "152 Teheran-ro, Gangnam-gu, Seoul",
+        "postal_code": "06236",
+        "adm_code": "1168010100",
+        "lawd_code": "11680",
+        "building_name": "강남파이낸스센터",
+        "sido": "서울특별시",
+        "sigungu": "강남구",
+        "eupmyeondong": "역삼동",
+        "ri": null,
+        "road_name": "테헤란로",
+        "building_main_no": "152",
+        "building_sub_no": "0",
+        "is_underground": false,
+        "is_mountain_lot": false,
+        "lot_main_no": "737",
+        "lot_sub_no": "0",
+        "road_mgmt_no": "116803122010",
+        "building_mgmt_no": "1168010100107370000023659"
+      }
+    ]
+  },
+  "meta": {
+    "tool": "search_address",
+    "cost": 1,
+    "balance_remaining": 48,
+    "cache_hit": false,
+    "source": "행정안전부 (juso.go.kr)",
+    "fetched_at": "2026-08-26T14:00:00.000Z",
+    "usage_event_id": "usg_…"
+  }
+}

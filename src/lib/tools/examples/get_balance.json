@@ -1,0 +1,17 @@
+{
+  "ok": true,
+  "data": {
+    "balance": 138,
+    "credit_price_krw": 10,
+    "topup": "POST /v1/topups {credits} → checkout_url (hand it to a human operator to pay)"
+  },
+  "meta": {
+    "tool": "get_balance",
+    "cost": 0,
+    "balance_remaining": 48,
+    "cache_hit": false,
+    "source": "internal",
+    "fetched_at": "2026-08-26T14:00:00.000Z",
+    "usage_event_id": "usg_…"
+  }
+}

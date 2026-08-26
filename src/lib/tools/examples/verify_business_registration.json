@@ -1,0 +1,41 @@
+{
+  "ok": true,
+  "data": {
+    "source": "국세청 사업자등록정보 (data.go.kr)",
+    "results": [
+      {
+        "business_number": "1248100998",
+        "registered": true,
+        "status": "active",
+        "status_raw": "계속사업자",
+        "tax_type": "부가가치세 일반과세자",
+        "tax_type_code": "01",
+        "closed_date": null,
+        "unit_taxpayer": false,
+        "tax_type_changed_date": null,
+        "e_invoice_apply_date": null
+      },
+      {
+        "business_number": "1234567890",
+        "registered": false,
+        "status": "not_registered",
+        "status_raw": "국세청에 등록되지 않은 사업자등록번호입니다.",
+        "tax_type": "국세청에 등록되지 않은 사업자등록번호입니다.",
+        "tax_type_code": "",
+        "closed_date": null,
+        "unit_taxpayer": false,
+        "tax_type_changed_date": null,
+        "e_invoice_apply_date": null
+      }
+    ]
+  },
+  "meta": {
+    "tool": "verify_business_registration",
+    "cost": 2,
+    "balance_remaining": 48,
+    "cache_hit": false,
+    "source": "국세청 (data.go.kr)",
+    "fetched_at": "2026-08-26T14:00:00.000Z",
+    "usage_event_id": "usg_…"
+  }
+}

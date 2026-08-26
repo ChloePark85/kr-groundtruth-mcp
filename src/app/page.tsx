@@ -11,11 +11,11 @@ export default function Home() {
 {`curl -X POST ${base}/v1/accounts -H 'content-type: application/json' -d '{"email":"you@example.com"}'
 claude mcp add --transport http kgt ${base}/api/mcp --header "Authorization: Bearer kgt_live_..."`}
       </pre>
-      <h2>Tools</h2>
+      <h2><a href="/tools">Tools</a></h2>
       <ul>
         {TOOLS.map((t) => (
           <li key={t.name}>
-            <code>{t.name}</code> — {costLine(t)} {t.description}
+            <a href={`/tools/${t.name}`}><code>{t.name}</code></a> — {costLine(t)} {t.description}
           </li>
         ))}
       </ul>
