@@ -23,7 +23,8 @@ Next.js 16 (App Router) · `mcp-handler` 2 (MCP SDK v2, stateless) · Supabase P
 ## Infra
 - Supabase project `kr-groundtruth-mcp` (ref `kzjzjahokqduktphxpsj`, ap-northeast-2)
 - Vercel project `chloepark85s-projects/kr-groundtruth-mcp`; env vars set for production (`vercel env ls`)
-- MCP registry manifest: `server.json` (publish with `mcp-publisher` after GitHub login)
+- Listings: Official MCP Registry `io.github.ChloePark85/kr-groundtruth` (`server.json` + `mcp-publisher`), Smithery `hapark85/kr-groundtruth` (`smithery mcp publish … --config-schema`), Glama (auto-indexed; claimed via `/.well-known/glama.json`), mcp.so (issue chatmcp/mcpso#3776)
+- MCP auth: discovery (initialize/tools/list) is public; `tools/call` needs a key via `Authorization: Bearer`, `x-api-key`, or `?apiKey=`
 
 ## Setup
 1. Supabase project → run `supabase/migrations/0001_core.sql` in the SQL editor (or `supabase db push`).
