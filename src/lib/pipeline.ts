@@ -46,7 +46,17 @@ export const executeTool = async (toolName: string, rawArgs: unknown, auth: Auth
   const hash = tool.cacheTtlSec > 0 ? requestHash(tool.name, args) : null;
   const cached = hash ? await cacheGet<unknown>(hash) : null;
   const eventId = randomUUID();
-  const { balance, cost } = await debit(auth.accountId, tool.name, eventId, cached !== null);
+  let debited: { balance: number; cost: number };
+  try {
+    debited = await debit(auth.accountId, tool.name, eventId, cached !== null);
+  } catch (e) {
+    const err = toApiError(e);
+    if (err.code === "INSUFFICIENT_CREDITS") {
+      await recordUsage(eventId, auth, tool.name, 0, cached !== null, Date.now() - started, "insufficient_credits", hash, err.message);
+    }
+    throw err;
+  }
+  const { balance, cost } = debited;
 
   if (cached !== null) {
     await recordUsage(eventId, auth, tool.name, cost, true, Date.now() - started, "ok", hash);

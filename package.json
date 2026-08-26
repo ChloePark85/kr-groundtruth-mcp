@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "metrics": "tsx scripts/metrics.ts",
+    "sync-dart": "tsx scripts/sync-dart-corp-codes.ts"
   },
   "dependencies": {
     "@modelcontextprotocol/server": "^2.0.0",
