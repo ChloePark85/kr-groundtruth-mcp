@@ -1,0 +1,57 @@
+{
+  "ok": true,
+  "data": {
+    "source": "국토교통부 아파트 매매 실거래가 (data.go.kr)",
+    "lawd_code": "11680",
+    "deal_month": "202507",
+    "total": 376,
+    "page": 1,
+    "results": [
+      {
+        "apartment_name": "신현대12차",
+        "deal_amount_krw": 8300000000,
+        "deal_amount_raw": "830,000",
+        "deal_date": "2025-07-14",
+        "exclusive_area_m2": 155.52,
+        "floor": 1,
+        "build_year": 1982,
+        "dong": "압구정동",
+        "jibun": "434",
+        "road_name": null,
+        "sigungu_code": "11680",
+        "deal_type": "중개거래",
+        "canceled": false,
+        "canceled_date": null,
+        "seller_type": "개인",
+        "buyer_type": "개인"
+      },
+      {
+        "apartment_name": "래미안 개포 루체하임",
+        "deal_amount_krw": 3300000000,
+        "deal_amount_raw": "330,000",
+        "deal_date": "2025-07-11",
+        "exclusive_area_m2": 84.97,
+        "floor": 12,
+        "build_year": 2018,
+        "dong": "일원동",
+        "jibun": "741",
+        "road_name": null,
+        "sigungu_code": "11680",
+        "deal_type": "중개거래",
+        "canceled": false,
+        "canceled_date": null,
+        "seller_type": "개인",
+        "buyer_type": "개인"
+      }
+    ]
+  },
+  "meta": {
+    "tool": "apartment_trade_prices",
+    "cost": 3,
+    "balance_remaining": 48,
+    "cache_hit": false,
+    "source": "국토교통부 (data.go.kr)",
+    "fetched_at": "2026-08-26T14:00:00.000Z",
+    "usage_event_id": "usg_…"
+  }
+}

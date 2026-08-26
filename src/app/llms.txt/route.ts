@@ -18,7 +18,7 @@ export const GET = () => {
    curl -X POST ${base}/v1/topups -H "Authorization: Bearer kgt_live_..." -d '{"credits":500}'  → checkout_url → give it to a human to pay by card.
 
 ## Tools
-${TOOLS.map((t) => `- ${t.name} — ${costLine(t)} ${t.description}`).join("\n")}
+${TOOLS.map((t) => `- [${t.name}](${base}/tools/${t.name}) — ${costLine(t)} ${t.description}`).join("\n")}
 
 ## Pricing
 1 credit = ${config.creditKrw} KRW. Live table: ${base}/pricing.json
