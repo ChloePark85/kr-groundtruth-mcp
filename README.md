@@ -50,6 +50,10 @@ tools/call → debit_credits (row-locked) → cache → upstream → {ok, data, 
 - `credit_ledger` is append-only (trigger) with `unique(reason, ref_id)`, so Toss success-redirect and webhook can both run safely.
 - All tables have RLS enabled with no policies; only the service-role key (server) can access them.
 
+## Metrics
+- `npm run metrics [-- --days 7 --include-test]` — weekly report (north star = Weekly Active API Keys; funnel created → first call → 2nd-day call → 402 → top-up; time-to-first-call; calls by tool; revenue). Test accounts (`@example.com`) excluded unless `--include-test`.
+- `GET /v1/admin/metrics?days=7` with header `x-admin-token: $ADMIN_TOKEN` returns the same JSON (`metrics_report()` in `supabase/migrations/0002_metrics.sql`).
+
 ## Verification checklist
 ```bash
 H=http://localhost:3000
