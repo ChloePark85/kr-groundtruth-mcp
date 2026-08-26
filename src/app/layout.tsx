@@ -14,8 +14,9 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.PUBLIC_URL ?? "http://localhost:3000"),
-  title: { default: "Korea Ground-Truth — AI 에이전트용 한국 사실 검증 API", template: "%s | Korea Ground-Truth" },
-  description: "사업자등록 상태·주소 정규화·법인정보·아파트 실거래가·법령을 MCP/REST로 검증. 선불 크레딧, 호출당 과금, 사람 없이 시작.",
+  title: { default: "Korea Ground-Truth — Korean Business, Legal & Real Estate MCP API", template: "%s | Korea Ground-Truth (KGT)" },
+  description: "Official Korean data for AI agents. One API, one MCP: 국세청 사업자등록, DART 법인, 도로명주소, 국토부 실거래가, 법제처 법령. Korea Verification API / Korean Official Data MCP (KGT).",
+  keywords: ["Korea Ground-Truth", "KGT", "Korean Official Data MCP", "Korea Verification API", "Korea MCP", "DART MCP", "사업자등록 조회 API", "한국 공공데이터 MCP"],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

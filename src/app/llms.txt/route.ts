@@ -3,9 +3,9 @@ import { costLine, TOOLS } from "@/lib/tools/registry";
 
 export const GET = () => {
   const base = config.publicUrl();
-  const text = `# Korea Ground-Truth API
+  const text = `# Korea Ground-Truth (KGT) — Korean Official Data MCP / Korea Verification API
 
-> Fact-verification tools for AI agents working with Korean data. Business registration status (국세청), address normalization + postal/legal-dong codes (행안부), corporation profiles (DART), apartment transaction prices (국토부), current laws (법제처). Prepaid credits, per-call metering, no human required to get started.
+> Official Korean data for AI agents. One API. One MCP. Instead of integrating five government APIs (NTS, DART, MOIS, MOLIT, MOLEG) separately, give your agent one endpoint. Business registration status (국세청), address normalization + postal/legal-dong codes (행안부), corporation profiles (DART), apartment transaction prices (국토부), current laws (법제처). Prepaid credits, per-call metering, no human required to get started.
 
 ## Quick start (agent-only, ~10 seconds)
 
@@ -16,6 +16,11 @@ export const GET = () => {
    or REST: curl -X POST ${base}/v1/tools/search_address -H "Authorization: Bearer kgt_live_..." -H 'content-type: application/json' -d '{"keyword":"세종대로 209"}'
 3. Every response includes meta.cost and meta.balance_remaining. When you get 402 INSUFFICIENT_CREDITS:
    curl -X POST ${base}/v1/topups -H "Authorization: Bearer kgt_live_..." -d '{"credits":500}'  → checkout_url → give it to a human to pay by card. (Humans can also pay directly at ${base}/topup with the API key.)
+
+## Example agent workflows (real traces)
+- ${base}/examples/company-verification — verify a company before signing: business status → corporation → profile → address
+- ${base}/examples/real-estate — apartment name → address → lawd_code → transaction prices
+- ${base}/examples/legal — confirm the current statute and enforcement date before answering
 
 ## Tools
 ${TOOLS.map((t) => `- [${t.name}](${base}/tools/${t.name}) — ${costLine(t)} ${t.description}`).join("\n")}
