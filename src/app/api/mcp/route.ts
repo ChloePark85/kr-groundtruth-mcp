@@ -55,4 +55,25 @@ const verifyToken = async (_req: Request, bearer?: string): Promise<AuthInfo | u
 
 const authed = withMcpAuth(handler, verifyToken, { required: true, resourceUrl: `${config.publicUrl()}/api/mcp` });
 
-export { authed as GET, authed as POST, authed as DELETE };
+/**
+ * Accept the API key as `x-api-key: kgt_live_…`, `Authorization: kgt_live_…` (no Bearer),
+ * or `?apiKey=` in addition to `Authorization: Bearer …`, by normalizing to the bearer form.
+ * Registries/gateways (e.g. Smithery config → header) don't always add the Bearer prefix.
+ */
+const normalized = async (req: Request) => {
+  const auth = req.headers.get("authorization") ?? "";
+  const url = new URL(req.url);
+  const candidate =
+    (/^Bearer\s+/i.test(auth) ? null : auth.trim()) ||
+    req.headers.get("x-api-key")?.trim() ||
+    url.searchParams.get("apiKey")?.trim() ||
+    url.searchParams.get("api_key")?.trim();
+  if (candidate && candidate.startsWith("kgt_")) {
+    const headers = new Headers(req.headers);
+    headers.set("authorization", `Bearer ${candidate}`);
+    req = new Request(req, { headers });
+  }
+  return authed(req);
+};
+
+export { normalized as GET, normalized as POST, normalized as DELETE };
