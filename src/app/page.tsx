@@ -68,7 +68,7 @@ claude mcp add --transport http kgt ${base}/api/mcp --header "Authorization: Bea
       </ul>
 
       <p style={{ fontSize: 13, color: "#777", marginTop: 32 }}>
-        <Link href="/topup">크레딧 충전</Link> · <a href="https://github.com/ChloePark85/kr-groundtruth-mcp">GitHub</a> · MCP endpoint <code>{base}/api/mcp</code>
+        <Link href="/topup">크레딧 충전</Link> · <a href="https://github.com/ChloePark85/kr-groundtruth-mcp">GitHub</a> · <a href="https://chloepark85.github.io/projects/korea-ground-truth-mcp/">개발기 (blog)</a> · MCP endpoint <code>{base}/api/mcp</code>
       </p>
     </main>
   );

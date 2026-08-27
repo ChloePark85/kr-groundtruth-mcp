@@ -28,6 +28,9 @@ ${TOOLS.map((t) => `- [${t.name}](${base}/tools/${t.name}) — ${costLine(t)} ${
 ## Pricing
 1 credit = ${config.creditKrw} KRW. Live table: ${base}/pricing.json
 
+## Background
+- Why this exists and how it was built (Korean): https://chloepark85.github.io/projects/korea-ground-truth-mcp/
+
 ## Specs
 - OpenAPI: ${base}/openapi.json
 - MCP endpoint: ${base}/api/mcp (Streamable HTTP, bearer API key)

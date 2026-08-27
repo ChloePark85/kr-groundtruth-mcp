@@ -31,7 +31,7 @@ const handler = createMcpHandler(
               ok: false,
               error: {
                 code: "UNAUTHORIZED",
-                message: "This tool needs an API key. Get one free (50 credits) then reconnect with Authorization: Bearer kgt_live_... (or x-api-key).",
+                message: `This tool needs an API key. Get one free (${config.signupBonusCredits} credits) then reconnect with Authorization: Bearer kgt_live_... (or x-api-key).`,
                 get_key: `curl -X POST ${config.publicUrl()}/v1/accounts -H 'content-type: application/json' -d '{"email":"you@example.com"}'`,
                 docs: `${config.publicUrl()}/llms.txt`,
               },

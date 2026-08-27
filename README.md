@@ -39,7 +39,7 @@ Next.js 16 (App Router) · `mcp-handler` 2 (MCP SDK v2, stateless) · Supabase P
 
 ## Flow
 ```
-POST /v1/accounts {email}            → api_key (once) + 50 free credits
+POST /v1/accounts {email}            → api_key (once) + free signup credits (SIGNUP_BONUS_CREDITS, 200 during launch)
 claude mcp add --transport http kgt $URL/api/mcp --header "Authorization: Bearer kgt_live_..."
 tools/call → debit_credits (row-locked) → cache → upstream → {ok, data, meta:{cost, balance_remaining}}
 402 INSUFFICIENT_CREDITS → POST /v1/topups {credits} → checkout_url → human pays (Toss) → credit_credits (idempotent)
